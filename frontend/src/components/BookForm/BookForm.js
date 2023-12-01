@@ -26,7 +26,7 @@ const BookForm = () => {
     }
   }
 
-  const handleAddRandomBookViaAPI = async () => {
+  const thunkFunction = async (dispatch, getState) => {
     try {
       const res = await axios.get('http://localhost:4000/random-book')
       if (res.data && res.data.title && res.data.author) {
@@ -35,6 +35,10 @@ const BookForm = () => {
     } catch (error) {
       console.log('Error fetching random book', error)
     }
+  }
+
+  const handleAddRandomBookViaAPI = async () => {
+    dispatch(thunkFunction)
   }
 
   return (
